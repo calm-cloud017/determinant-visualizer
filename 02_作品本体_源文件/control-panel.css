@@ -1,0 +1,170 @@
+/* 重置基础样式 */
+body { 
+  margin: 0; 
+  overflow: hidden; 
+  background-color: #000; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 面板容器 */
+#control-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 260px;
+  background: rgba(30, 30, 30, 0.2); /* 暗色半透明 */
+  backdrop-filter: blur(12px);       /* 磨砂玻璃效果 */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, opacity 0.3s ease; /* 动画过渡 */
+  z-index: 100;
+}
+
+/* 面板头部 */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel-header h2 { margin: 0; font-size: 18px; font-weight: 500; }
+
+/* 折叠按钮 */
+#toggle-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.3s, color 0.3s;
+}
+#toggle-btn:hover { color: white; }
+
+/* 折叠动画机制 */
+#control-panel.collapsed {
+  transform: translateX(calc(100% - 60px)); /* 只留出左边一小部分 */
+  opacity: 0.8;
+}
+#control-panel.collapsed #toggle-btn {
+  transform: rotate(180deg);
+}
+#control-panel.collapsed .panel-content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 内容区 */
+.panel-content { padding: 20px; transition: opacity 0.3s; }
+.control-group { margin-bottom: 20px; }
+.control-group h3 { margin: 0 0 10px 0; font-size: 18px; font-weight: 400; }
+.color-a h3 { color: #f3c623; }
+.color-b h3 { color: #e86a92; }
+
+/* 滑块行布局 */
+.slider-row { margin-bottom: 8px; }
+.slider-row label { display: block; font-size: 15px; color: #ccc; margin-bottom: 5px; }
+.slider-row label span { color: white; font-weight: bold; }
+
+/* 滑动条与微调按钮的组合 */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 自定义微调按钮 */
+.step-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s;
+  user-select: none;
+}
+.step-btn:hover { background: rgba(255, 255, 255, 0.3); }
+.step-btn:active { background: rgba(255, 255, 255, 0.5); }
+
+/* 自定义滑动条 */
+input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: white;
+  margin-top: -5px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
+hr { border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
+
+/* 重置按钮 */
+#reset-btn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  margin-top: 1px;
+  transition: all 0.2s;
+}
+#reset-btn:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* 控制面板按钮通用样式 */
+.demo-btn {
+  padding: 7px 16px;
+  font-size: 14px;
+  font-family: 'Cambria Math', Cambria, serif;
+  color: #e6f2fb;
+  background: #1a3a52;
+  border: 1px solid #2696dc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.demo-btn:hover {
+  background: #234b6b;
+  border-color: #4fb3f0;
+  box-shadow: 0 0 8px rgba(79, 179, 240, 0.4);
+}
+
+.demo-btn:active {
+  background: #17303f;
+}
+
+/* 显示状态时（可选，配合 class 切换） */
+.demo-btn.active {
+  background: #2696dc;
+  color: #fff;
+  border-color: #4fb3f0;
+}
+
+.demo-btn-right {
+  position: fixed;
+  right: 16px;
+  top: 600px;
+}
